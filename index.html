@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>印刷拼版系统</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">印刷拼版系统</div>
+  <div class="cfg">
+    <label>纸张
+      <select id="paperPreset"></select>
+    </label>
+    <label>幅面宽(mm)<input id="paperW" type="number" min="1" step="1"></label>
+    <label>幅面高(mm)<input id="paperH" type="number" min="1" step="1"></label>
+    <label>咬口宽(mm)<input id="gripper" type="number" min="0" step="0.5"></label>
+    <label>出血边(mm)<input id="bleed" type="number" min="0" step="0.5"></label>
+    <label class="rot-label"><input id="allowRotate" type="checkbox" checked>允许自动旋转</label>
+    <button id="resetBtn" class="ghost" title="清空全部数据">清空</button>
+  </div>
+</header>
+
+<aside class="sidebar">
+  <section class="card">
+    <h2>新增成品件</h2>
+    <label class="field">名称（可选）<input id="pName" type="text" maxlength="20" placeholder="自动编号"></label>
+    <label class="field">成品宽(mm)<input id="pW" type="number" min="1" step="0.5" data-required></label>
+    <label class="field">成品高(mm)<input id="pH" type="number" min="1" step="0.5" data-required></label>
+    <label class="field">开数
+      <select id="pFormat" data-required>
+        <option value="">请选择开数…</option>
+      </select>
+    </label>
+    <label class="field">留边(mm)<input id="pMargin" type="number" min="0" step="0.5" data-required></label>
+    <p id="formHint" class="hint"></p>
+    <button id="addBtn" disabled>加入拼版</button>
+  </section>
+
+  <section class="card">
+    <h2>成品件清单 <span id="trayCount" class="badge">0</span></h2>
+    <div id="tray" class="tray"></div>
+  </section>
+
+  <section class="card stats">
+    <div><span id="statTotal">0</span><small>成品件总数</small></div>
+    <div><span id="statPlaced">0</span><small>已上版</small></div>
+    <div><span id="statOverflow">0</span><small>溢出件</small></div>
+    <div><span id="statValid">0</span><small>有效纸张</small></div>
+  </section>
+</aside>
+
+<main class="canvas-wrap">
+  <div class="canvas-toolbar">
+    <div id="sheetTabs" class="sheet-tabs"></div>
+      <div class="zoom">
+        <button id="zoomOut" class="ghost">－</button>
+        <span id="zoomVal">100%</span>
+        <button id="zoomIn" class="ghost">＋</button>
+      </div>
+  </div>
+  <div id="canvas" class="canvas"></div>
+  <div id="resumeTip" class="resume-tip hidden"></div>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="js/engine.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
