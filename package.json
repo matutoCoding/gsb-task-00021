@@ -1,0 +1,10 @@
+{
+  "name": "imposition-system",
+  "version": "1.0.0",
+  "description": "印刷拼版系统",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  }
+}
